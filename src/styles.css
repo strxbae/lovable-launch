@@ -171,3 +171,40 @@
   letter-spacing: -0.045em;
   line-height: 0.92;
 }
+
+@keyframes cloud-approach {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--cloud-x, 0), 2rem, 0) scale(0.55);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: var(--cloud-o, 0.9);
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes cloud-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(1.5rem, -0.75rem, 0);
+  }
+}
+
+@utility cloud-in {
+  opacity: 0;
+  animation:
+    cloud-approach 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    cloud-drift 18s ease-in-out 1.8s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud-in {
+    animation: none;
+    opacity: var(--cloud-o, 0.9);
+  }
+}

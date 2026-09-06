@@ -5,6 +5,9 @@ import avatar from "@/assets/avatar.jpg";
 import workCheckout from "@/assets/work-checkout.jpg";
 import workBills from "@/assets/work-bills.jpg";
 import workQuickpass from "@/assets/work-quickpass.jpg";
+import heroSky from "@/assets/hero-sky.jpg";
+import cloud1 from "@/assets/cloud-1.png";
+import cloud2 from "@/assets/cloud-2.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -254,18 +257,55 @@ function Index() {
       </div>
 
       {/* hero */}
-      <header className="mx-auto max-w-[1140px] px-6 pb-24 pt-24 text-center sm:pt-32">
-        <p className="text-lg font-medium text-foreground/70">👋 Hey, I&apos;m Sanjay</p>
-        <h1 className="display-xl mt-6 text-[clamp(3rem,13vw,10.5rem)]">
-          product
-          <br />
-          designer
-        </h1>
-        <p className="mt-8 text-base text-foreground/60 sm:text-lg">
-          Building consumer &amp; enterprise products @{" "}
-          <span className="font-semibold text-primary">mygate</span>
-        </p>
+      <header className="relative isolate overflow-hidden px-6 pb-24 pt-24 text-center sm:pt-32">
+        {/* sky background */}
+        <img
+          src={heroSky}
+          alt=""
+          aria-hidden
+          width={1920}
+          height={1080}
+          className="pointer-events-none absolute inset-0 -z-20 size-full object-cover"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 -z-20 h-40 bg-gradient-to-b from-transparent to-background"
+        />
+
+        {/* animated clouds */}
+        <img
+          src={cloud1}
+          alt=""
+          aria-hidden
+          className="cloud-in pointer-events-none absolute -left-16 top-10 -z-10 w-[38rem] max-w-[70vw] [--cloud-o:0.85] [--cloud-x:-6rem] [animation-delay:0.1s,1.9s]"
+        />
+        <img
+          src={cloud2}
+          alt=""
+          aria-hidden
+          className="cloud-in pointer-events-none absolute -right-24 top-32 -z-10 w-[42rem] max-w-[80vw] [--cloud-o:0.8] [--cloud-x:7rem] [animation-delay:0.45s,2.25s]"
+        />
+        <img
+          src={cloud1}
+          alt=""
+          aria-hidden
+          className="cloud-in pointer-events-none absolute -bottom-16 left-1/4 -z-10 w-[34rem] max-w-[70vw] [--cloud-o:0.7] [--cloud-x:0rem] [animation-delay:0.8s,2.6s]"
+        />
+
+        <div className="mx-auto max-w-[1140px]">
+          <p className="text-lg font-medium text-foreground/70">👋 Hey, I&apos;m Sanjay</p>
+          <h1 className="display-xl mt-6 text-[clamp(3rem,13vw,10.5rem)]">
+            product
+            <br />
+            designer
+          </h1>
+          <p className="mt-8 text-base text-foreground/60 sm:text-lg">
+            Building consumer &amp; enterprise products @{" "}
+            <span className="font-semibold text-primary">mygate</span>
+          </p>
+        </div>
       </header>
+
 
       <Divider />
 
