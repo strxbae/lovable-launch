@@ -244,7 +244,11 @@ function Index() {
       {/* top meta bar */}
       <div className="mx-auto flex max-w-[1140px] items-center justify-between px-6 pt-6 eyebrow text-foreground/60">
         <span className="flex items-center gap-1.5">
-          BASED IN <span aria-hidden>📍</span> BENGALURU, KA
+          BASED IN
+          <svg viewBox="0 0 24 24" fill="currentColor" className="size-3.5" aria-hidden>
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
+          </svg>
+          BENGALURU, KA
         </span>
         <span>CREATE &gt; CONSUME</span>
       </div>
@@ -267,7 +271,7 @@ function Index() {
 
       {/* what I do */}
       <section className="mx-auto max-w-[1140px] px-6 py-24">
-        <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
+        <div className="grid items-start gap-10 md:grid-cols-[1fr_2fr]">
           <Eyebrow>WHAT I DO</Eyebrow>
           <div>
             <h2 className="text-[clamp(1.75rem,3.6vw,3rem)] font-extrabold leading-[1.12] tracking-tight">
