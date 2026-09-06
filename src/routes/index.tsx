@@ -457,41 +457,60 @@ function Index() {
       <Divider />
 
       {/* experience */}
-      <section id="experience" className="mx-auto max-w-[1140px] px-6 py-24">
-        <Eyebrow center>EXPERIENCE</Eyebrow>
-        <h2 className="display-xl mt-6 text-center text-[clamp(2.25rem,6vw,4.5rem)]">
-          the journey so far
-        </h2>
-        <p className="mx-auto mt-5 max-w-xl text-center text-foreground/60">
-          From healthcare SaaS to insurance to community tech — four roles across two years, and
-          counting.
-        </p>
+      <section id="experience" className="py-24">
+        <div className="mx-auto max-w-[1140px] px-6">
+          <Eyebrow center>EXPERIENCE</Eyebrow>
+          <h2 className="display-xl mt-6 text-center text-[clamp(2.25rem,6vw,4.5rem)]">
+            the journey so far
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-center text-foreground/60">
+            From healthcare SaaS to insurance to community tech — four roles across two years, and
+            counting.
+          </p>
+        </div>
 
-        <div className="mt-14 space-y-4">
-          {experience.map((job) => (
-            <div
-              key={job.period + job.role}
-              className="grid gap-6 rounded-3xl bg-white/70 p-7 ring-1 ring-black/5 md:grid-cols-[200px_1fr]"
-            >
-              <p className="text-sm font-semibold text-foreground/50">{job.period}</p>
-              <div>
-                <h3 className="text-2xl font-extrabold tracking-tight">{job.role}</h3>
-                <p className="mt-1 text-foreground/60">
-                  {job.company} · {job.location}
-                </p>
-                <ul className="mt-4 space-y-2 text-foreground/70">
+        <div className="relative mt-14">
+          <div
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-6 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:px-[max(1.5rem,calc((100vw-1140px)/2))]"
+            role="list"
+            aria-label="Work experience"
+          >
+            {experience.map((job, i) => (
+              <article
+                key={job.period + job.role}
+                role="listitem"
+                className="group flex w-[85vw] shrink-0 snap-start flex-col justify-between rounded-[2rem] bg-white/70 p-8 ring-1 ring-black/5 backdrop-blur transition-colors hover:ring-primary/30 sm:w-[24rem]"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="eyebrow rounded-full bg-primary/10 px-3 py-1.5 text-primary">
+                      {job.period}
+                    </span>
+                    <span className="eyebrow text-foreground/30">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="mt-7 text-2xl font-extrabold tracking-tight">{job.role}</h3>
+                  <p className="mt-1 text-foreground/60">
+                    {job.company} · {job.location}
+                  </p>
+                </div>
+                <ul className="mt-7 space-y-3 border-t border-foreground/10 pt-6 text-sm text-foreground/70">
                   {job.points.map((pt) => (
                     <li key={pt} className="flex gap-3">
-                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
+                      <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
                       {pt}
                     </li>
                   ))}
                 </ul>
-              </div>
-            </div>
-          ))}
+              </article>
+            ))}
+            <div className="w-2 shrink-0" aria-hidden />
+          </div>
+          <p className="mt-2 text-center eyebrow text-foreground/40">scroll →</p>
         </div>
       </section>
+
 
       <Divider />
 
