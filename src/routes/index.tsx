@@ -471,42 +471,61 @@ function Index() {
 
         <div className="relative mt-14">
           <div
-            className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-6 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:px-[max(1.5rem,calc((100vw-1140px)/2))]"
+            className="flex snap-x snap-mandatory items-stretch gap-0 overflow-x-auto scroll-smooth px-6 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:px-[max(1.5rem,calc((100vw-1140px)/2))]"
             role="list"
             aria-label="Work experience"
           >
             {experience.map((job, i) => (
-              <article
-                key={job.period + job.role}
-                role="listitem"
-                className="group flex w-[85vw] shrink-0 snap-start flex-col justify-between rounded-[2rem] bg-white/70 p-8 ring-1 ring-black/5 backdrop-blur transition-colors hover:ring-primary/30 sm:w-[24rem]"
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="eyebrow rounded-full bg-primary/10 px-3 py-1.5 text-primary">
-                      {job.period}
-                    </span>
-                    <span className="eyebrow text-foreground/30">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+              <div key={job.period + job.role} className="flex shrink-0 items-stretch">
+                {i > 0 && (
+                  <div
+                    aria-hidden
+                    className="flex w-16 shrink-0 items-center justify-center sm:w-24"
+                  >
+                    <span className="h-px w-full bg-gradient-to-r from-transparent via-foreground/25 to-transparent" />
+                    <span className="absolute size-2 rounded-full bg-primary/60 ring-4 ring-background" />
                   </div>
-                  <h3 className="mt-7 text-2xl font-extrabold tracking-tight">{job.role}</h3>
-                  <p className="mt-1 text-foreground/60">
-                    {job.company} · {job.location}
-                  </p>
-                </div>
-                <ul className="mt-7 space-y-3 border-t border-foreground/10 pt-6 text-sm text-foreground/70">
-                  {job.points.map((pt) => (
-                    <li key={pt} className="flex gap-3">
-                      <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </article>
+                )}
+                <article
+                  role="listitem"
+                  className="group flex w-[85vw] shrink-0 snap-start flex-col justify-between rounded-[2rem] bg-white/70 p-8 ring-1 ring-black/5 backdrop-blur transition-colors hover:ring-primary/30 sm:w-[24rem]"
+                >
+                  <div>
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-foreground/80 shadow-sm ring-1 ring-black/5">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="size-3.5 text-primary"
+                          aria-hidden
+                        >
+                          <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
+                        </svg>
+                        {job.period}
+                      </span>
+                      <span className="eyebrow pt-1 text-foreground/30">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <h3 className="mt-7 text-2xl font-extrabold tracking-tight">{job.role}</h3>
+                    <p className="mt-1 text-foreground/60">
+                      {job.company} · {job.location}
+                    </p>
+                  </div>
+                  <ul className="mt-7 space-y-3 border-t border-foreground/10 pt-6 text-sm text-foreground/70">
+                    {job.points.map((pt) => (
+                      <li key={pt} className="flex gap-3">
+                        <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </div>
             ))}
             <div className="w-2 shrink-0" aria-hidden />
           </div>
+
           <p className="mt-2 text-center eyebrow text-foreground/40">scroll →</p>
         </div>
       </section>
