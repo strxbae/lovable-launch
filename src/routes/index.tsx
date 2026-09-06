@@ -480,7 +480,7 @@ function Index() {
                 {i > 0 && (
                   <div
                     aria-hidden
-                    className="flex w-16 shrink-0 items-center justify-center sm:w-24"
+                    className="relative flex w-16 shrink-0 items-center justify-center sm:w-24"
                   >
                     <span className="h-px w-full bg-gradient-to-r from-transparent via-foreground/25 to-transparent" />
                     <span className="absolute size-2 rounded-full bg-primary/60 ring-4 ring-background" />
