@@ -193,7 +193,7 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
 function Nav() {
   const [open, setOpen] = useState(false);
   return (
-    <div className="fixed left-1/2 top-5 z-50 -translate-x-1/2">
+    <div className="fixed left-1/2 top-5 z-50 -translate-x-1/2 sm:top-[4.25rem]">
       <div className="flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-[0_8px_30px_rgba(15,23,42,0.12)] ring-1 ring-black/5">
         <a href="#top" className="flex items-center gap-2 pl-1">
           <img
