@@ -218,13 +218,13 @@ function Nav() {
       className="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-border/40 bg-background/60 px-6 py-4 backdrop-blur-xl md:px-10"
     >
       {/* Kiri: brand */}
-      <a href="#top" className="flex items-center gap-3">
-        <span className="grid size-9 place-items-center rounded-md bg-foreground">
+      <a href="#top" className="group flex items-center gap-3">
+        <span className="grid size-9 place-items-center rounded-md bg-foreground transition-transform duration-300 group-hover:scale-105">
           <span className="text-[11px] font-bold tracking-tight text-background">FR</span>
         </span>
         <span className="flex flex-col leading-tight">
-          <span className="text-sm font-semibold">Sanjay Menon</span>
-          <span className="text-[11px] text-muted-foreground">Product Designer</span>
+          <span className="text-sm font-semibold">Fadli ramadhan</span>
+          <span className="text-[11px] text-muted-foreground">UI/UX Designer</span>
         </span>
       </a>
 
@@ -278,16 +278,23 @@ function Nav() {
       <div className="flex items-center gap-5">
         <div className="hidden items-center gap-5 sm:flex">
           {[
-            { label: "Linked In", href: "https://www.linkedin.com/in/sanjay-menon" },
-            { label: "Resume", href: "#" },
+            { label: "Linked In", href: "https://www.linkedin.com/in/fadli-ramadhan11/", external: true },
+            { label: "Resume", href: "/resume", external: false },
           ].map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="group/link flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-foreground"
             >
-              {link.label}
-              <ArrowUpRight size={14} />
+              <span className="relative">
+                {link.label}
+                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-foreground transition-all duration-300 group-hover/link:w-full" />
+              </span>
+              <ArrowUpRight
+                size={14}
+                className="transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+              />
             </a>
           ))}
         </div>
