@@ -405,7 +405,7 @@ function Index() {
         <div className="mx-auto flex max-w-[1140px] flex-col items-center text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-card/70 px-4 py-2 text-[11px] font-bold tracking-[0.18em] text-foreground/70 ring-1 ring-black/5 backdrop-blur">
             <span className="size-1.5 rounded-full bg-primary" />
-            AVAILABLE FOR FREELANCE
+            Halo, I&apos;m Fadli 👋
           </span>
 
           <h1 className="display-xl mt-8 text-[clamp(2.5rem,8vw,6.5rem)]">
@@ -414,8 +414,9 @@ function Index() {
             interactions &amp;{" "}
             <Typewriter
               words={["Interfaces", "Magic", "Stories"]}
-              className="font-script text-foreground/80"
+              className="font-script text-primary"
             />
+
             <span aria-hidden>.</span>
           </h1>
 
