@@ -237,7 +237,33 @@ function Nav() {
   );
 }
 
+function Typewriter({ text, className = "" }: { text: string; className?: string }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let i = 0;
+    const id = window.setInterval(() => {
+      i += 1;
+      setCount(i);
+      if (i >= text.length) window.clearInterval(id);
+    }, 160);
+    return () => window.clearInterval(id);
+  }, [text]);
+
+  return (
+    <span className={className}>
+      <span aria-hidden>{text.slice(0, count)}</span>
+      <span className="sr-only">{text}</span>
+      <span
+        aria-hidden
+        className="ml-1 inline-block h-[0.8em] w-[0.06em] translate-y-[0.05em] animate-[caret-blink_1s_step-end_infinite] bg-primary align-middle"
+      />
+    </span>
+  );
+}
+
 /* --------------------------------- page ---------------------------------- */
+
 
 function Index() {
   return (
