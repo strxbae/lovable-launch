@@ -476,66 +476,78 @@ function Index() {
           </p>
         </div>
 
-        <div className="mt-14 space-y-6 px-3 sm:px-6">
+        <div className="mt-14 space-y-8 px-3 sm:px-6">
           {projects.map((p) => (
             <article
               key={p.no}
-              className="relative isolate overflow-hidden rounded-[2rem] bg-black/5"
+              className="overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.12)]"
             >
-              <img
-                src={p.image}
-                alt={p.title}
-                width={1280}
-                height={1440}
-                loading="lazy"
-                className="h-[70vh] min-h-[520px] w-full object-cover"
-              />
-              <div className="absolute inset-x-4 bottom-4 max-w-xl rounded-[1.5rem] border border-white/25 bg-white/15 p-6 backdrop-blur-md sm:inset-x-10 sm:bottom-10 sm:p-8">
-                <div className="flex items-center justify-between text-sm text-white/80">
-                  <span className="grid size-8 place-items-center rounded-full bg-white/20">
-                    {p.no}
-                  </span>
-                  <span>{p.year}</span>
-                </div>
-                <h3 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
+              {/* macOS window title bar */}
+              <div className="flex h-10 items-center gap-2 border-b border-black/5 bg-white px-4">
+                <span className="size-3 rounded-full bg-[#FF5F57] ring-1 ring-black/5" aria-hidden />
+                <span className="size-3 rounded-full bg-[#FFBD2E] ring-1 ring-black/5" aria-hidden />
+                <span className="size-3 rounded-full bg-[#28C840] ring-1 ring-black/5" aria-hidden />
+                <span className="ml-auto truncate pl-4 text-xs font-medium text-foreground/40">
                   {p.title}
-                </h3>
-                <div className="mt-5 flex flex-wrap gap-2 border-t border-white/25 pt-5">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full bg-white/20 px-3 py-1 text-sm text-white"
-                    >
-                      {t}
+                </span>
+              </div>
+
+              <div className="relative isolate">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  width={1280}
+                  height={1440}
+                  loading="lazy"
+                  className="h-[70vh] min-h-[520px] w-full object-cover"
+                />
+                <div className="absolute inset-x-4 bottom-4 max-w-xl rounded-[1.5rem] border border-white/25 bg-white/15 p-6 backdrop-blur-md sm:inset-x-10 sm:bottom-10 sm:p-8">
+                  <div className="flex items-center justify-between text-sm text-white/80">
+                    <span className="grid size-8 place-items-center rounded-full bg-white/20">
+                      {p.no}
                     </span>
-                  ))}
-                </div>
-                <p className="mt-4 text-white/85">{p.body}</p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {p.actions.map((a) =>
-                    a.kind === "locked" ? (
+                    <span>{p.year}</span>
+                  </div>
+                  <h3 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
+                    {p.title}
+                  </h3>
+                  <div className="mt-5 flex flex-wrap gap-2 border-t border-white/25 pt-5">
+                    {p.tags.map((t) => (
                       <span
-                        key={a.label}
-                        className="inline-flex items-center gap-2 rounded-full bg-white/20 py-2 pl-2 pr-5 font-semibold text-white/80"
+                        key={t}
+                        className="rounded-full bg-white/20 px-3 py-1 text-sm text-white"
                       >
-                        <span className="grid size-8 place-items-center rounded-full bg-white/25">
-                          🔒
-                        </span>
-                        {a.label}
+                        {t}
                       </span>
-                    ) : (
-                      <a
-                        key={a.label}
-                        href="#work"
-                        className="inline-flex items-center gap-2 rounded-full bg-white py-2 pl-2 pr-5 font-semibold text-black transition hover:bg-white/90"
-                      >
-                        <span className="grid size-8 place-items-center rounded-full bg-black text-white">
-                          →
+                    ))}
+                  </div>
+                  <p className="mt-4 text-white/85">{p.body}</p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {p.actions.map((a) =>
+                      a.kind === "locked" ? (
+                        <span
+                          key={a.label}
+                          className="inline-flex items-center gap-2 rounded-full bg-white/20 py-2 pl-2 pr-5 font-semibold text-white/80"
+                        >
+                          <span className="grid size-8 place-items-center rounded-full bg-white/25">
+                            🔒
+                          </span>
+                          {a.label}
                         </span>
-                        {a.label}
-                      </a>
-                    ),
-                  )}
+                      ) : (
+                        <a
+                          key={a.label}
+                          href="#work"
+                          className="inline-flex items-center gap-2 rounded-full bg-white py-2 pl-2 pr-5 font-semibold text-black transition hover:bg-white/90"
+                        >
+                          <span className="grid size-8 place-items-center rounded-full bg-black text-white">
+                            →
+                          </span>
+                          {a.label}
+                        </a>
+                      ),
+                    )}
+                  </div>
                 </div>
               </div>
             </article>
