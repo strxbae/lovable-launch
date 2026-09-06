@@ -402,22 +402,37 @@ function Index() {
           className="cloud-in pointer-events-none absolute -bottom-16 left-1/4 -z-10 w-[34rem] max-w-[70vw] [--cloud-o:0.7] [--cloud-x:0rem] [animation-delay:0.8s,2.6s]"
         />
 
-        <div className="mx-auto max-w-[1140px]">
-          <p className="text-lg font-medium text-foreground/70">👋 Hey, I&apos;m Sanjay</p>
-          <h1 className="display-xl mt-6 text-[clamp(2.5rem,9vw,7.5rem)]">
+        <div className="mx-auto flex max-w-[1140px] flex-col items-center text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-card/70 px-4 py-2 text-[11px] font-bold tracking-[0.18em] text-foreground/70 ring-1 ring-black/5 backdrop-blur">
+            <span className="size-1.5 rounded-full bg-primary" />
+            AVAILABLE FOR FREELANCE
+          </span>
+
+          <h1 className="display-xl mt-8 text-[clamp(2.5rem,8vw,6.5rem)]">
             I craft products,
             <br />
+            interactions &amp;{" "}
             <Typewriter
-              words={["interactions", "stories", "magic"]}
-              className="font-script text-primary"
+              words={["Interfaces", "Magic", "Stories"]}
+              className="font-script text-foreground/80"
             />
+            <span aria-hidden>.</span>
           </h1>
 
-          <p className="mt-8 text-base text-foreground/60 sm:text-lg">
-            Building consumer &amp; enterprise products @{" "}
-            <span className="font-semibold text-primary">mygate</span>
+          <p className="mt-10 text-base font-semibold text-foreground sm:text-lg">
+            Enthusiast UI/UX Designer
           </p>
+          <p className="mt-2 text-sm text-foreground/50 sm:text-base">Based in Jakarta, ID</p>
+
+          <div className="mt-16 flex flex-col items-center gap-3 text-foreground/45">
+            <span className="text-[10px] font-semibold tracking-[0.35em]">SCROLL</span>
+            <span className="flex h-11 w-7 items-start justify-center rounded-full ring-1 ring-foreground/20">
+              <span className="mt-2 size-1.5 animate-bounce rounded-full bg-foreground/40" />
+            </span>
+            <span className="text-sm">↓</span>
+          </div>
         </div>
+
 
       </header>
 
