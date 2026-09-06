@@ -237,7 +237,33 @@ function Nav() {
   );
 }
 
+function Typewriter({ text, className = "" }: { text: string; className?: string }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let i = 0;
+    const id = window.setInterval(() => {
+      i += 1;
+      setCount(i);
+      if (i >= text.length) window.clearInterval(id);
+    }, 160);
+    return () => window.clearInterval(id);
+  }, [text]);
+
+  return (
+    <span className={className}>
+      <span aria-hidden>{text.slice(0, count)}</span>
+      <span className="sr-only">{text}</span>
+      <span
+        aria-hidden
+        className="ml-1 inline-block h-[0.8em] w-[0.06em] translate-y-[0.05em] animate-[caret-blink_1s_step-end_infinite] bg-primary align-middle"
+      />
+    </span>
+  );
+}
+
 /* --------------------------------- page ---------------------------------- */
+
 
 function Index() {
   return (
@@ -294,16 +320,17 @@ function Index() {
 
         <div className="mx-auto max-w-[1140px]">
           <p className="text-lg font-medium text-foreground/70">👋 Hey, I&apos;m Sanjay</p>
-          <h1 className="display-xl mt-6 text-[clamp(3rem,13vw,10.5rem)]">
-            product
+          <h1 className="display-xl mt-6 text-[clamp(2.5rem,9vw,7.5rem)]">
+            crafting digital
             <br />
-            designer
+            <Typewriter text="magic" className="font-script text-primary" />
           </h1>
           <p className="mt-8 text-base text-foreground/60 sm:text-lg">
             Building consumer &amp; enterprise products @{" "}
             <span className="font-semibold text-primary">mygate</span>
           </p>
         </div>
+
       </header>
 
 
