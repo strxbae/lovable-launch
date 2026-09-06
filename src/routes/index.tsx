@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Menu } from "lucide-react";
 
-import avatar from "@/assets/avatar.jpg";
+
 import workCheckout from "@/assets/work-checkout.jpg";
 import workBills from "@/assets/work-bills.jpg";
 import workQuickpass from "@/assets/work-quickpass.jpg";
