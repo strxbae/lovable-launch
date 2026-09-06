@@ -299,17 +299,6 @@ function Index() {
     <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <Nav />
 
-      {/* top meta bar */}
-      <div className="mx-auto flex max-w-[1140px] items-center justify-between px-6 pt-6 eyebrow text-foreground/60">
-        <span className="flex items-center gap-1.5">
-          BASED IN
-          <svg viewBox="0 0 24 24" fill="currentColor" className="size-3.5" aria-hidden>
-            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" />
-          </svg>
-          BENGALURU, KA
-        </span>
-        <span>CREATE &gt; CONSUME</span>
-      </div>
 
       {/* hero */}
       <header className="relative isolate overflow-hidden px-6 pb-24 pt-24 text-center sm:pt-32">
