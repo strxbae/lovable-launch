@@ -476,7 +476,7 @@ function Index() {
           </p>
         </div>
 
-        <div className="mt-14 space-y-8 px-3 sm:px-6">
+        <div className="mt-28 space-y-8 px-3 pb-8 sm:px-6">
           {projects.map((p) => (
             <article
               key={p.no}
