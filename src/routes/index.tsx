@@ -480,7 +480,7 @@ function Index() {
           {projects.map((p) => (
             <article
               key={p.no}
-              className="overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.12)]"
+              className="relative my-4 overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out hover:-rotate-[19deg] hover:border-primary/50 hover:shadow-[0_32px_100px_rgba(0,0,0,0.16)]"
             >
               {/* macOS window title bar */}
               <div className="flex h-10 items-center gap-2 border-b border-black/5 bg-white px-4">
