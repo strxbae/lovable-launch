@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Menu } from "lucide-react";
 
 import avatar from "@/assets/avatar.jpg";
 import workCheckout from "@/assets/work-checkout.jpg";
