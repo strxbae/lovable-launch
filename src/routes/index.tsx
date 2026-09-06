@@ -237,23 +237,51 @@ function Nav() {
   );
 }
 
-function Typewriter({ text, className = "" }: { text: string; className?: string }) {
+function Typewriter({
+  words,
+  className = "",
+  typeSpeed = 95,
+  deleteSpeed = 45,
+  holdTime = 1600,
+}: {
+  words: string[];
+  className?: string;
+  typeSpeed?: number;
+  deleteSpeed?: number;
+  holdTime?: number;
+}) {
+  const [index, setIndex] = useState(0);
   const [count, setCount] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  const word = words[index] ?? "";
 
   useEffect(() => {
-    let i = 0;
-    const id = window.setInterval(() => {
-      i += 1;
-      setCount(i);
-      if (i >= text.length) window.clearInterval(id);
-    }, 160);
-    return () => window.clearInterval(id);
-  }, [text]);
+    let delay = deleting ? deleteSpeed : typeSpeed;
+
+    if (!deleting && count === word.length) delay = holdTime;
+    if (deleting && count === 0) delay = 320;
+
+    const id = window.setTimeout(() => {
+      if (!deleting) {
+        if (count < word.length) setCount(count + 1);
+        else setDeleting(true);
+      } else {
+        if (count > 0) setCount(count - 1);
+        else {
+          setDeleting(false);
+          setIndex((i) => (i + 1) % words.length);
+        }
+      }
+    }, delay);
+
+    return () => window.clearTimeout(id);
+  }, [count, deleting, word, words.length, typeSpeed, deleteSpeed, holdTime]);
 
   return (
     <span className={className}>
-      <span aria-hidden>{text.slice(0, count)}</span>
-      <span className="sr-only">{text}</span>
+      <span aria-hidden>{word.slice(0, count)}</span>
+      <span className="sr-only">{words.join(", ")}</span>
       <span
         aria-hidden
         className="ml-1 inline-block h-[0.8em] w-[0.06em] translate-y-[0.05em] animate-[caret-blink_1s_step-end_infinite] bg-primary align-middle"
@@ -261,6 +289,7 @@ function Typewriter({ text, className = "" }: { text: string; className?: string
     </span>
   );
 }
+
 
 /* --------------------------------- page ---------------------------------- */
 
