@@ -193,7 +193,7 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
 function Nav() {
   const [open, setOpen] = useState(false);
   return (
-    <div className="fixed left-1/2 top-5 z-50 -translate-x-1/2">
+    <div className="fixed left-1/2 top-5 z-50 -translate-x-1/2 sm:top-[4.25rem]">
       <div className="flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-[0_8px_30px_rgba(15,23,42,0.12)] ring-1 ring-black/5">
         <a href="#top" className="flex items-center gap-2 pl-1">
           <img
@@ -267,7 +267,23 @@ function Typewriter({ text, className = "" }: { text: string; className?: string
 
 function Index() {
   return (
-    <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div className="min-h-screen bg-secondary p-0 sm:p-6">
+      <div className="relative mx-auto max-w-[1440px] overflow-hidden bg-background text-foreground sm:rounded-xl sm:ring-1 sm:ring-window-border sm:shadow-2xl">
+        <div
+          className="relative hidden h-11 items-center border-b border-window-border bg-window-chrome px-4 sm:flex"
+          aria-label="macOS window frame"
+        >
+          <div className="flex items-center gap-2" aria-hidden>
+            <span className="size-3 rounded-full bg-traffic-close ring-1 ring-foreground/10" />
+            <span className="size-3 rounded-full bg-traffic-minimize ring-1 ring-foreground/10" />
+            <span className="size-3 rounded-full bg-traffic-expand ring-1 ring-foreground/10" />
+          </div>
+          <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-xs font-semibold text-foreground/55">
+            sanjaymenon.design
+          </span>
+        </div>
+
+        <div id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <Nav />
 
       {/* top meta bar */}
@@ -622,6 +638,8 @@ function Index() {
 
         <p className="mt-12 text-center text-sm text-foreground/45">© 2026 Sanjay Menon</p>
       </footer>
+        </div>
+      </div>
     </div>
   );
 }
