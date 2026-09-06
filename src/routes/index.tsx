@@ -5,6 +5,9 @@ import avatar from "@/assets/avatar.jpg";
 import workCheckout from "@/assets/work-checkout.jpg";
 import workBills from "@/assets/work-bills.jpg";
 import workQuickpass from "@/assets/work-quickpass.jpg";
+import heroSky from "@/assets/hero-sky.jpg";
+import cloud1 from "@/assets/cloud-1.png";
+import cloud2 from "@/assets/cloud-2.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
