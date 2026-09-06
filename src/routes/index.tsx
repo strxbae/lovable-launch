@@ -244,7 +244,11 @@ function Nav() {
           {/* Spotlight cone */}
           <motion.span
             aria-hidden
-            className="pointer-events-none absolute -top-3 h-24 w-56 -translate-x-1/2 bg-[radial-gradient(50%_90%_at_50%_0%,theme(colors.foreground/0.28),transparent_75%)]"
+            className="pointer-events-none absolute -top-3 h-24 w-56 -translate-x-1/2"
+            style={{
+              background:
+                "radial-gradient(50% 90% at 50% 0%, color-mix(in oklch, var(--foreground) 28%, transparent), transparent 75%)",
+            }}
             animate={{ x: lampX }}
             transition={{ type: "spring", stiffness: 260, damping: 26 }}
           />
