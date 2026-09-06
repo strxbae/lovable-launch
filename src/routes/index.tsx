@@ -192,50 +192,110 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
   );
 }
 
+const NAV_LINKS = [
+  { label: "Projects", href: "#work" },
+  { label: "About", href: "#about" },
+] as const;
+
 function Nav() {
-  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [lampX, setLampX] = useState(0);
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const litIndex = hovered ?? active;
+
+  useEffect(() => {
+    const el = linkRefs.current[litIndex];
+    if (el) setLampX(el.offsetLeft + el.offsetWidth / 2);
+  }, [litIndex]);
+
   return (
-    <div className="fixed left-1/2 top-5 z-50 -translate-x-1/2">
-      <div className="flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-[0_8px_30px_rgba(15,23,42,0.12)] ring-1 ring-black/5">
-        <a href="#top" className="flex items-center gap-2 pl-1">
-          <img
-            src={avatar}
-            alt="Sanjay Menon"
-            width={64}
-            height={64}
-            className="size-7 rounded-full object-cover"
-          />
-          <span className="text-sm font-extrabold tracking-tight">SANJAY</span>
-        </a>
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-          className="grid size-7 place-items-center rounded-full transition hover:bg-black/5"
+    <motion.nav
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-border/40 bg-background/60 px-6 py-4 backdrop-blur-xl md:px-10"
+    >
+      {/* Kiri: brand */}
+      <a href="#top" className="flex items-center gap-3">
+        <span className="grid size-9 place-items-center rounded-md bg-foreground">
+          <span className="text-[11px] font-bold tracking-tight text-background">FR</span>
+        </span>
+        <span className="flex flex-col leading-tight">
+          <span className="text-sm font-semibold">Sanjay Menon</span>
+          <span className="text-[11px] text-muted-foreground">Product Designer</span>
+        </span>
+      </a>
+
+      {/* Tengah: menu pill dengan spotlight */}
+      <div className="absolute left-1/2 -translate-x-1/2">
+        <div
+          onMouseLeave={() => setHovered(null)}
+          className="relative flex rounded-full border border-border/50 bg-card/50 px-1.5 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.18)]"
         >
-          <span className="text-lg leading-none tracking-[0.1em]">•••</span>
-        </button>
+          {/* Spotlight beam */}
+          <motion.span
+            aria-hidden
+            className="pointer-events-none absolute -top-4 h-1.5 w-10 -translate-x-1/2 rounded-full bg-foreground/80 blur-[1px]"
+            animate={{ x: lampX }}
+            transition={{ type: "spring", stiffness: 260, damping: 26 }}
+          />
+          {/* Spotlight cone */}
+          <motion.span
+            aria-hidden
+            className="pointer-events-none absolute -top-3 h-24 w-56 -translate-x-1/2 bg-[radial-gradient(50%_90%_at_50%_0%,theme(colors.foreground/0.28),transparent_75%)]"
+            animate={{ x: lampX }}
+            transition={{ type: "spring", stiffness: 260, damping: 26 }}
+          />
+          {NAV_LINKS.map((link, i) => {
+            const lit = i === litIndex;
+            return (
+              <a
+                key={link.label}
+                ref={(el) => {
+                  linkRefs.current[i] = el;
+                }}
+                href={link.href}
+                onClick={() => setActive(i)}
+                onMouseEnter={() => setHovered(i)}
+                className={`relative rounded-full px-6 py-2 text-sm font-medium transition-colors duration-300 ${
+                  lit ? "text-foreground" : "text-muted-foreground"
+                } hover:bg-foreground/10 hover:shadow-[inset_0_1px_0_theme(colors.foreground/0.2)]`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </div>
       </div>
-      {open && (
-        <div className="mt-2 flex flex-col overflow-hidden rounded-2xl bg-white p-2 shadow-[0_8px_30px_rgba(15,23,42,0.12)] ring-1 ring-black/5">
+
+      {/* Kanan: link eksternal + tombol ikon */}
+      <div className="flex items-center gap-5">
+        <div className="hidden items-center gap-5 sm:flex">
           {[
-            ["Work", "#work"],
-            ["About", "#about"],
-            ["Experience", "#experience"],
-          ].map(([label, href]) => (
+            { label: "Linked In", href: "https://www.linkedin.com/in/sanjay-menon" },
+            { label: "Resume", href: "#" },
+          ].map((link) => (
             <a
-              key={label}
-              href={href}
-              onClick={() => setOpen(false)}
-              className="rounded-xl px-4 py-2 text-sm font-semibold transition hover:bg-black/5"
+              key={link.label}
+              href={link.href}
+              className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              {label}
+              {link.label}
+              <ArrowUpRight size={14} />
             </a>
           ))}
         </div>
-      )}
-    </div>
+        <button
+          type="button"
+          aria-label="Buka menu"
+          className="grid size-9 place-items-center rounded-full border border-border/50 bg-card/50 text-foreground transition-colors hover:bg-foreground/10"
+        >
+          <Menu size={16} />
+        </button>
+      </div>
+    </motion.nav>
   );
 }
 
