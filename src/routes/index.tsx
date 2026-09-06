@@ -294,16 +294,17 @@ function Index() {
 
         <div className="mx-auto max-w-[1140px]">
           <p className="text-lg font-medium text-foreground/70">👋 Hey, I&apos;m Sanjay</p>
-          <h1 className="display-xl mt-6 text-[clamp(3rem,13vw,10.5rem)]">
-            product
+          <h1 className="display-xl mt-6 text-[clamp(2.5rem,9vw,7.5rem)]">
+            crafting digital
             <br />
-            designer
+            <Typewriter text="magic" className="font-script text-primary" />
           </h1>
           <p className="mt-8 text-base text-foreground/60 sm:text-lg">
             Building consumer &amp; enterprise products @{" "}
             <span className="font-semibold text-primary">mygate</span>
           </p>
         </div>
+
       </header>
 
 
