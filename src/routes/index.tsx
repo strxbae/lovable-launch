@@ -68,7 +68,26 @@ const projects = [
       { label: "View in Playstore", kind: "primary" as const },
     ],
   },
+  {
+    no: "04",
+    year: "2023",
+    title: "A wallet that feels calm, not cluttered",
+    tags: ["Fintech", "Design System", "iOS & Android"],
+    body: "Rebuilt the wallet experience around clarity: fewer taps to pay, clearer balances, and a token based design system used across teams.",
+    image: workWallet,
+    actions: [{ label: "View Case Study", kind: "primary" as const }],
+  },
+  {
+    no: "05",
+    year: "2023",
+    title: "Analytics dashboard for ops teams",
+    tags: ["B2B SaaS", "Data Viz", "Web"],
+    body: "Turned dense operational data into a dashboard teams actually read daily, cutting time to insight from minutes to seconds.",
+    image: workDashboard,
+    actions: [{ label: "View Case Study", kind: "primary" as const }],
+  },
 ];
+
 
 const experience = [
   {
