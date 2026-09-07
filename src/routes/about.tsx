@@ -259,9 +259,12 @@ function AboutPage() {
           {STORY.map((item, i) => (
             <div
               key={item.title}
-              className="grid items-center gap-10 md:grid-cols-[minmax(0,420px)_minmax(0,1fr)] md:gap-16"
+              className="grid items-center gap-10 md:grid-cols-[minmax(0,300px)_minmax(0,1fr)] md:gap-16"
             >
-              <div className={i % 2 === 1 ? "md:order-2" : ""}>
+              <div
+                className={`w-full max-w-[260px] justify-self-center sm:max-w-[300px] md:justify-self-start ${i % 2 === 1 ? "md:order-2 md:justify-self-end" : ""}`}
+              >
+
                 <PhotoCard src={item.src} alt={item.alt} />
               </div>
               <div className={i % 2 === 1 ? "md:order-1 md:justify-self-end" : ""}>
