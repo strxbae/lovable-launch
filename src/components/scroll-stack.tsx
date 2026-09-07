@@ -88,10 +88,12 @@ const ScrollStack = ({
     };
   }, [useWindowScroll]);
 
-  const updateCardTransforms = useCallback(() => {
+  const updateCardTransforms = useCallback((overrideScrollTop?: number) => {
     if (!cardsRef.current.length) return;
 
-    const { scrollTop, containerHeight } = getScrollData();
+    const raw = getScrollData();
+    const containerHeight = raw.containerHeight;
+    const scrollTop = overrideScrollTop ?? raw.scrollTop;
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
     const endElementTop = endTopRef.current;
