@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { SiteNav } from "@/components/site-nav";
+import ScrollStack, { ScrollStackItem } from "@/components/scroll-stack";
+
 
 
 import workCheckout from "@/assets/work-checkout.jpg";
