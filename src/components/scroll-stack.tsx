@@ -244,6 +244,7 @@ const ScrollStack = ({
         ? scrollerTop + endElement.offsetTop
         : scrollerTop;
       transformsCache.clear();
+      smoothedScrollRef.current = null;
       updateCardTransforms();
     };
 
