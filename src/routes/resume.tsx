@@ -34,7 +34,11 @@ function ResumePage() {
       {/* sky gradient */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-b from-background via-[oklch(0.85_0.09_244)] to-[oklch(0.62_0.19_252)]"
+        className="pointer-events-none absolute inset-0 -z-20"
+        style={{
+          background:
+            "linear-gradient(180deg, #F9FDFF 0%, #F9FDFF 19%, #74BAF8 54%, #1B8AE5 75%)",
+        }}
       />
 
       {/* animated clouds */}
