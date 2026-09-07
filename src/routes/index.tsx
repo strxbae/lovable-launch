@@ -7,6 +7,8 @@ import { ArrowUpRight, Menu } from "lucide-react";
 import workCheckout from "@/assets/work-checkout.jpg";
 import workBills from "@/assets/work-bills.jpg";
 import workQuickpass from "@/assets/work-quickpass.jpg";
+import workWallet from "@/assets/work-wallet.jpg";
+import workDashboard from "@/assets/work-dashboard.jpg";
 import heroSky from "@/assets/hero-sky.jpg";
 import cloud1 from "@/assets/cloud-1.png";
 import cloud2 from "@/assets/cloud-2.png";
@@ -499,83 +501,87 @@ function Index() {
           </p>
         </div>
 
-        <div className="mt-28 space-y-8 px-3 pb-8 sm:px-6">
-          {projects.map((p) => (
-            <article
+        <div className="mx-auto mt-24 max-w-[1140px] px-3 pb-[30vh] sm:px-6">
+          {projects.map((p, i) => (
+            <div
               key={p.no}
-              className="relative my-4 overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out hover:-rotate-[19deg] hover:border-primary/50 hover:shadow-[0_32px_100px_rgba(0,0,0,0.16)]"
+              className="sticky"
+              style={{ top: `calc(6rem + ${i * 1.5}rem)`, marginBottom: "8vh" }}
             >
-              {/* macOS window title bar */}
-              <div className="flex h-10 items-center gap-2 border-b border-black/5 bg-white px-4">
-                <span className="size-3 rounded-full bg-[#FF5F57] ring-1 ring-black/5" aria-hidden />
-                <span className="size-3 rounded-full bg-[#FFBD2E] ring-1 ring-black/5" aria-hidden />
-                <span className="size-3 rounded-full bg-[#28C840] ring-1 ring-black/5" aria-hidden />
-                <span className="ml-auto truncate pl-4 text-xs font-medium text-foreground/40">
-                  {p.title}
-                </span>
-              </div>
-
-              <div className="relative isolate">
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  width={1280}
-                  height={1440}
-                  loading="lazy"
-                  className="h-[70vh] min-h-[520px] w-full object-cover"
-                />
-                <div className="absolute inset-x-4 bottom-4 max-w-xl rounded-[1.5rem] border border-white/25 bg-white/15 p-6 backdrop-blur-md sm:inset-x-10 sm:bottom-10 sm:p-8">
-                  <div className="flex items-center justify-between text-sm text-white/80">
-                    <span className="grid size-8 place-items-center rounded-full bg-white/20">
-                      {p.no}
-                    </span>
-                    <span>{p.year}</span>
-                  </div>
-                  <h3 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
+              <article className="group relative overflow-hidden rounded-lg border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_36px_110px_rgba(0,0,0,0.2)]">
+                {/* macOS window title bar */}
+                <div className="flex h-10 items-center gap-2 border-b border-black/5 bg-white px-4">
+                  <span className="size-3 rounded-full bg-[#FF5F57] ring-1 ring-black/5" aria-hidden />
+                  <span className="size-3 rounded-full bg-[#FFBD2E] ring-1 ring-black/5" aria-hidden />
+                  <span className="size-3 rounded-full bg-[#28C840] ring-1 ring-black/5" aria-hidden />
+                  <span className="ml-auto truncate pl-4 text-xs font-medium text-foreground/40">
                     {p.title}
-                  </h3>
-                  <div className="mt-5 flex flex-wrap gap-2 border-t border-white/25 pt-5">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full bg-white/20 px-3 py-1 text-sm text-white"
-                      >
-                        {t}
+                  </span>
+                </div>
+
+                <div className="relative isolate aspect-video w-full overflow-hidden">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    width={1920}
+                    height={1080}
+                    loading="lazy"
+                    className="absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-x-3 bottom-3 max-w-xl rounded-lg border border-white/25 bg-black/25 p-4 backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:p-6">
+                    <div className="flex items-center justify-between text-xs text-white/80">
+                      <span className="grid size-7 place-items-center rounded-full bg-white/20">
+                        {p.no}
                       </span>
-                    ))}
-                  </div>
-                  <p className="mt-4 text-white/85">{p.body}</p>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    {p.actions.map((a) =>
-                      a.kind === "locked" ? (
+                      <span>{p.year}</span>
+                    </div>
+                    <h3 className="mt-3 text-xl font-extrabold leading-tight tracking-tight text-white sm:text-2xl">
+                      {p.title}
+                    </h3>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {p.tags.map((t) => (
                         <span
-                          key={a.label}
-                          className="inline-flex items-center gap-2 rounded-full bg-white/20 py-2 pl-2 pr-5 font-semibold text-white/80"
+                          key={t}
+                          className="rounded-full bg-white/20 px-2.5 py-0.5 text-xs text-white"
                         >
-                          <span className="grid size-8 place-items-center rounded-full bg-white/25">
-                            🔒
-                          </span>
-                          {a.label}
+                          {t}
                         </span>
-                      ) : (
-                        <a
-                          key={a.label}
-                          href="#work"
-                          className="inline-flex items-center gap-2 rounded-full bg-white py-2 pl-2 pr-5 font-semibold text-black transition hover:bg-white/90"
-                        >
-                          <span className="grid size-8 place-items-center rounded-full bg-black text-white">
-                            →
+                      ))}
+                    </div>
+                    <p className="mt-3 hidden text-sm text-white/85 sm:block">{p.body}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {p.actions.map((a) =>
+                        a.kind === "locked" ? (
+                          <span
+                            key={a.label}
+                            className="inline-flex items-center gap-2 rounded-full bg-white/20 py-1.5 pl-1.5 pr-4 text-sm font-semibold text-white/80"
+                          >
+                            <span className="grid size-6 place-items-center rounded-full bg-white/25 text-xs">
+                              🔒
+                            </span>
+                            {a.label}
                           </span>
-                          {a.label}
-                        </a>
-                      ),
-                    )}
+                        ) : (
+                          <a
+                            key={a.label}
+                            href="#work"
+                            className="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-1.5 pr-4 text-sm font-semibold text-black transition hover:bg-white/90"
+                          >
+                            <span className="grid size-6 place-items-center rounded-full bg-black text-xs text-white transition-transform duration-300 group-hover:translate-x-0.5">
+                              →
+                            </span>
+                            {a.label}
+                          </a>
+                        ),
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
           ))}
         </div>
+
       </section>
 
       <Divider />
