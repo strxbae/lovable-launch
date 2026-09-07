@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { SiteNav } from "@/components/site-nav";
-import ScrollStack, { ScrollStackItem } from "@/components/scroll-stack";
 
 
 
@@ -404,17 +403,13 @@ function Index() {
           </p>
         </div>
 
-        <ScrollStack
-          className="mx-auto mt-16 max-w-[1140px] px-3 sm:px-6"
-          itemDistance={60}
-          itemStackDistance={24}
-          itemScale={0.03}
-          baseScale={0.88}
-          stackPosition="18%"
-          scaleEndPosition="8%"
-        >
-          {projects.map((p) => (
-            <ScrollStackItem key={p.no}>
+        <div className="mx-auto mt-16 max-w-[1140px] px-3 sm:px-6">
+          {projects.map((p, i) => (
+            <div
+              key={p.no}
+              className="sticky mb-10 last:mb-0"
+              style={{ top: `calc(12vh + ${i * 20}px)` }}
+            >
 
               <article className="group relative overflow-hidden rounded-lg border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_36px_110px_rgba(0,0,0,0.2)]">
                 {/* macOS window title bar */}
@@ -486,9 +481,9 @@ function Index() {
                   </div>
                 </div>
               </article>
-            </ScrollStackItem>
+            </div>
           ))}
-        </ScrollStack>
+        </div>
 
 
       </section>
