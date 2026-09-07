@@ -58,6 +58,7 @@ const ScrollStack = ({
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
   const smoothedScrollRef = useRef<number | null>(null);
+  const reducedMotionRef = useRef(false);
   const lastFrameTimeRef = useRef(0);
   const cardsRef = useRef<HTMLElement[]>([]);
   const cardTopsRef = useRef<number[]>([]);
