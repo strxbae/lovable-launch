@@ -482,9 +482,9 @@ function Index() {
                   </div>
                 </div>
               </article>
-            </ScrollStackItem>
+            </div>
           ))}
-        </ScrollStack>
+        </div>
 
 
       </section>
