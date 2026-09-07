@@ -132,12 +132,12 @@ function PhotoCard({ src, alt }: { src: string; alt: string }) {
     <Reveal>
       <figure className="group rounded-[20px] border border-border/70 bg-card/70 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.08)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_28px_90px_rgba(0,0,0,0.14)]">
         <span aria-hidden className="mb-3 block h-px w-full bg-border/70" />
-        <div className="overflow-hidden rounded-[20px]">
+        <div className="aspect-[3/4] overflow-hidden rounded-[20px]">
           <img
             src={src}
             alt={alt}
             loading="lazy"
-            className="w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
         </div>
         <span aria-hidden className="mt-3 block h-px w-full bg-border/70" />
@@ -148,14 +148,50 @@ function PhotoCard({ src, alt }: { src: string; alt: string }) {
 
 function Para({ title, body }: { title: string; body: string }) {
   return (
-    <Reveal>
-      <div className="max-w-[538px] pl-0 md:pl-12">
-        <h3 className="text-2xl font-semibold text-foreground">{title}</h3>
-        <p className="mt-3 text-2xl leading-relaxed text-muted-foreground">{body}</p>
+    <Reveal delay={0.1}>
+      <div className="max-w-[538px]">
+        <h3 className="text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold leading-tight tracking-tight">
+          {title}
+        </h3>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground sm:text-xl">{body}</p>
       </div>
     </Reveal>
   );
 }
+
+const STORY: { src: string; alt: string; title: string; body: string }[] = [
+  {
+    src: aboutPortrait,
+    alt: "Portrait of Fadli Ramadhan",
+    title: "My background in Informatics",
+    body: "I graduated in Informatics from Gunadarma University. Somewhere between writing code and shipping campus projects, I fell for Human-Computer Interaction — the part where technology finally meets the person using it.",
+  },
+  {
+    src: aboutCampus,
+    alt: "Campus courtyard at Gunadarma University",
+    title: "But, I wanted more",
+    body: "The curriculum only took me so far. I wanted to grow faster, so I chased mentors, communities and real briefs outside the classroom until design became a daily habit.",
+  },
+  {
+    src: aboutTrain,
+    alt: "Commuter train ride",
+    title: "This thing called UX?",
+    body: "The pandemic slowed everything down, so I joined the Kampus Merdeka UI/UX program. That was the first time I saw research, wireframes and testing come together as one craft — and I never really left.",
+  },
+  {
+    src: aboutSunset,
+    alt: "Sunset over the rooftops",
+    title: "Making it all happen",
+    body: "My developer background turned into an advantage: I can talk components, constraints and feasibility with engineers, then bring it back into a design that still feels human.",
+  },
+  {
+    src: aboutRoad,
+    alt: "Open road through green hills",
+    title: "In my spare time,",
+    body: "I keep tweaking this portfolio, take online courses, play badminton, game a little too long, and travel whenever the schedule allows.",
+  },
+];
+
 
 function AboutPage() {
   return (
