@@ -57,6 +57,8 @@ const ScrollStack = ({
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
+  const smoothedScrollRef = useRef<number | null>(null);
+  const lastFrameTimeRef = useRef(0);
   const cardsRef = useRef<HTMLElement[]>([]);
   const cardTopsRef = useRef<number[]>([]);
   const endTopRef = useRef(0);
@@ -86,10 +88,12 @@ const ScrollStack = ({
     };
   }, [useWindowScroll]);
 
-  const updateCardTransforms = useCallback(() => {
+  const updateCardTransforms = useCallback((overrideScrollTop?: number) => {
     if (!cardsRef.current.length) return;
 
-    const { scrollTop, containerHeight } = getScrollData();
+    const raw = getScrollData();
+    const containerHeight = raw.containerHeight;
+    const scrollTop = overrideScrollTop ?? raw.scrollTop;
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
     const endElementTop = endTopRef.current;
@@ -172,13 +176,53 @@ const ScrollStack = ({
     getScrollData,
   ]);
 
+  // Easing + lerp loop: smoothed value chases the real scroll position with a
+  // frame-rate independent factor and a hard speed cap so fast flicks stay fluid.
+  const tick = useCallback(
+    (now: number) => {
+      animationFrameRef.current = null;
+
+      const { scrollTop: target } = getScrollData();
+      const last = lastFrameTimeRef.current || now;
+      const dt = Math.min(64, Math.max(1, now - last));
+      lastFrameTimeRef.current = now;
+
+      let current = smoothedScrollRef.current;
+      if (current === null) current = target;
+
+      const distance = target - current;
+      const absDistance = Math.abs(distance);
+
+      if (absDistance < 0.25) {
+        current = target;
+      } else {
+        // exponential ease, normalised to 60fps frames
+        const smoothing = 1 - Math.pow(1 - 0.18, dt / 16.6667);
+        let step = distance * smoothing;
+
+        // speed limit: never travel more than this many px per frame,
+        // but scale it with the distance so long flicks still catch up.
+        const maxStep = Math.max(40, absDistance * 0.5) * (dt / 16.6667);
+        if (Math.abs(step) > maxStep) step = Math.sign(step) * maxStep;
+
+        current += step;
+      }
+
+      smoothedScrollRef.current = current;
+      updateCardTransforms(current);
+
+      if (current !== target) {
+        animationFrameRef.current = window.requestAnimationFrame(tick);
+      }
+    },
+    [getScrollData, updateCardTransforms],
+  );
+
   const handleScroll = useCallback(() => {
     if (animationFrameRef.current !== null) return;
-    animationFrameRef.current = window.requestAnimationFrame(() => {
-      animationFrameRef.current = null;
-      updateCardTransforms();
-    });
-  }, [updateCardTransforms]);
+    lastFrameTimeRef.current = performance.now();
+    animationFrameRef.current = window.requestAnimationFrame(tick);
+  }, [tick]);
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
@@ -200,6 +244,7 @@ const ScrollStack = ({
         ? scrollerTop + endElement.offsetTop
         : scrollerTop;
       transformsCache.clear();
+      smoothedScrollRef.current = null;
       updateCardTransforms();
     };
 
