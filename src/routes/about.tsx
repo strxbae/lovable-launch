@@ -132,12 +132,12 @@ function PhotoCard({ src, alt }: { src: string; alt: string }) {
     <Reveal>
       <figure className="group rounded-[20px] border border-border/70 bg-card/70 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.08)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_28px_90px_rgba(0,0,0,0.14)]">
         <span aria-hidden className="mb-3 block h-px w-full bg-border/70" />
-        <div className="overflow-hidden rounded-[20px]">
+        <div className="aspect-[3/4] overflow-hidden rounded-[20px]">
           <img
             src={src}
             alt={alt}
             loading="lazy"
-            className="w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
         </div>
         <span aria-hidden className="mt-3 block h-px w-full bg-border/70" />
@@ -148,14 +148,50 @@ function PhotoCard({ src, alt }: { src: string; alt: string }) {
 
 function Para({ title, body }: { title: string; body: string }) {
   return (
-    <Reveal>
-      <div className="max-w-[538px] pl-0 md:pl-12">
-        <h3 className="text-2xl font-semibold text-foreground">{title}</h3>
-        <p className="mt-3 text-2xl leading-relaxed text-muted-foreground">{body}</p>
+    <Reveal delay={0.1}>
+      <div className="max-w-[538px]">
+        <h3 className="text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold leading-tight tracking-tight">
+          {title}
+        </h3>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground sm:text-xl">{body}</p>
       </div>
     </Reveal>
   );
 }
+
+const STORY: { src: string; alt: string; title: string; body: string }[] = [
+  {
+    src: aboutPortrait,
+    alt: "Portrait of Fadli Ramadhan",
+    title: "My background in Informatics",
+    body: "I graduated in Informatics from Gunadarma University. Somewhere between writing code and shipping campus projects, I fell for Human-Computer Interaction — the part where technology finally meets the person using it.",
+  },
+  {
+    src: aboutCampus,
+    alt: "Campus courtyard at Gunadarma University",
+    title: "But, I wanted more",
+    body: "The curriculum only took me so far. I wanted to grow faster, so I chased mentors, communities and real briefs outside the classroom until design became a daily habit.",
+  },
+  {
+    src: aboutTrain,
+    alt: "Commuter train ride",
+    title: "This thing called UX?",
+    body: "The pandemic slowed everything down, so I joined the Kampus Merdeka UI/UX program. That was the first time I saw research, wireframes and testing come together as one craft — and I never really left.",
+  },
+  {
+    src: aboutSunset,
+    alt: "Sunset over the rooftops",
+    title: "Making it all happen",
+    body: "My developer background turned into an advantage: I can talk components, constraints and feasibility with engineers, then bring it back into a design that still feels human.",
+  },
+  {
+    src: aboutRoad,
+    alt: "Open road through green hills",
+    title: "In my spare time,",
+    body: "I keep tweaking this portfolio, take online courses, play badminton, game a little too long, and travel whenever the schedule allows.",
+  },
+];
+
 
 function AboutPage() {
   return (
@@ -202,7 +238,7 @@ function AboutPage() {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
           >
             <SectionLabel>ABOUT ME</SectionLabel>
-            <h1 className="mt-3 max-w-[24ch] text-[clamp(2rem,5vw,3rem)] font-medium leading-tight tracking-tight">
+            <h1 className="display-xl mt-4 max-w-[22ch] text-[clamp(2rem,5.5vw,3.5rem)]">
               My dedication lies in creating aesthetic and inclusive products that{" "}
               <em className="font-script not-italic text-primary">empower users.</em>
             </h1>
@@ -211,59 +247,45 @@ function AboutPage() {
       </header>
 
       {/* STORY GALLERY */}
-      <section className="mx-auto max-w-[1472px] px-6 pb-24 md:px-16 lg:px-32">
-        <div className="grid gap-20 md:grid-cols-2">
-          {/* left column */}
-          <div className="flex flex-col gap-20">
-            <PhotoCard src={aboutPortrait} alt="Portrait of Fadli Ramadhan" />
-            <Para
-              title="My background in Informatics"
-              body="I graduated in Informatics from Gunadarma University. Somewhere between writing code and shipping campus projects, I fell for Human-Computer Interaction — the part where technology finally meets the person using it."
-            />
-            <PhotoCard src={aboutTrain} alt="Commuter train ride" />
-            <Para
-              title="This thing called UX?"
-              body="The pandemic slowed everything down, so I joined the Kampus Merdeka UI/UX program. That was the first time I saw research, wireframes and testing come together as one craft — and I never really left."
-            />
-            <Para
-              title="In my spare time,"
-              body="I keep tweaking this portfolio, take online courses, play badminton, game a little too long, and travel whenever the schedule allows."
-            />
-            <Reveal>
-              <div className="max-w-[538px] pl-0 md:pl-12">
-                <h3 className="text-2xl font-semibold">Thanks for stopping by!</h3>
-                <img
-                  src={aboutSignature}
-                  alt="Fadli Ramadhan signature"
-                  loading="lazy"
-                  className="mt-4 w-40"
-                />
-              </div>
-            </Reveal>
-          </div>
+      <section className="mx-auto max-w-[1140px] px-6 pb-24 md:px-10">
+        <Reveal>
+          <p className="max-w-[640px] text-xl font-semibold leading-relaxed sm:text-2xl">
+            This is my story — alongside some flicks from my recent journey at Gunadarma
+            University.
+          </p>
+        </Reveal>
 
-          {/* right column */}
-          <div className="flex flex-col gap-20 md:pt-24">
-            <Reveal>
-              <p className="max-w-[538px] text-2xl font-medium leading-relaxed">
-                This is my story — alongside some flicks from my recent journey at Gunadarma
-                University.
-              </p>
-            </Reveal>
-            <PhotoCard src={aboutCampus} alt="Campus courtyard at Gunadarma University" />
-            <Para
-              title="But, I wanted more"
-              body="The curriculum only took me so far. I wanted to grow faster, so I chased mentors, communities and real briefs outside the classroom until design became a daily habit."
-            />
-            <PhotoCard src={aboutSunset} alt="Sunset over the rooftops" />
-            <Para
-              title="Making it all happen"
-              body="My developer background turned into an advantage: I can talk components, constraints and feasibility with engineers, then bring it back into a design that still feels human."
-            />
-            <PhotoCard src={aboutRoad} alt="Open road through green hills" />
-          </div>
+        <div className="mt-20 flex flex-col gap-24 md:gap-32">
+          {STORY.map((item, i) => (
+            <div
+              key={item.title}
+              className="grid items-center gap-10 md:grid-cols-[minmax(0,420px)_minmax(0,1fr)] md:gap-16"
+            >
+              <div className={i % 2 === 1 ? "md:order-2" : ""}>
+                <PhotoCard src={item.src} alt={item.alt} />
+              </div>
+              <div className={i % 2 === 1 ? "md:order-1 md:justify-self-end" : ""}>
+                <Para title={item.title} body={item.body} />
+              </div>
+            </div>
+          ))}
         </div>
+
+        <Reveal>
+          <div className="mt-24 max-w-[538px]">
+            <h3 className="text-[clamp(1.5rem,2.6vw,2rem)] font-extrabold tracking-tight">
+              Thanks for stopping by!
+            </h3>
+            <img
+              src={aboutSignature}
+              alt="Fadli Ramadhan signature"
+              loading="lazy"
+              className="mt-4 w-40"
+            />
+          </div>
+        </Reveal>
       </section>
+
 
       {/* EXPERIENCE */}
       <section className="mx-auto max-w-[1472px] px-6 pb-24 md:px-16 lg:px-32">
