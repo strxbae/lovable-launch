@@ -58,6 +58,7 @@ const ScrollStack = ({
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
   const smoothedScrollRef = useRef<number | null>(null);
+  const reducedMotionRef = useRef(false);
   const lastFrameTimeRef = useRef(0);
   const cardsRef = useRef<HTMLElement[]>([]);
   const cardTopsRef = useRef<number[]>([]);
@@ -219,10 +220,21 @@ const ScrollStack = ({
   );
 
   const handleScroll = useCallback(() => {
+    // Reduced motion: skip the easing loop entirely and snap to the real
+    // scroll position so cards move 1:1 with the page (no animated motion).
+    if (reducedMotionRef.current) {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+      smoothedScrollRef.current = null;
+      updateCardTransforms();
+      return;
+    }
     if (animationFrameRef.current !== null) return;
     lastFrameTimeRef.current = performance.now();
     animationFrameRef.current = window.requestAnimationFrame(tick);
-  }, [tick]);
+  }, [tick, updateCardTransforms]);
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
@@ -262,6 +274,20 @@ const ScrollStack = ({
     }
 
     window.addEventListener("resize", measureLayout);
+
+    // Track the user's reduced-motion preference, reacting to live changes.
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const applyMotionPreference = () => {
+      reducedMotionRef.current = motionQuery.matches;
+      if (motionQuery.matches && animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+        smoothedScrollRef.current = null;
+      }
+    };
+    applyMotionPreference();
+    motionQuery.addEventListener("change", applyMotionPreference);
+
     measureLayout();
 
     return () => {
@@ -269,6 +295,7 @@ const ScrollStack = ({
       if (useWindowScroll) window.removeEventListener("scroll", handleScroll);
       else scroller.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", measureLayout);
+      motionQuery.removeEventListener("change", applyMotionPreference);
       stackCompletedRef.current = false;
       cardsRef.current = [];
       cardTopsRef.current = [];
