@@ -411,17 +411,7 @@ function Index() {
               style={{ top: `calc(12vh + ${i * 20}px)` }}
             >
 
-              <article className="group relative overflow-hidden rounded-lg border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_36px_110px_rgba(0,0,0,0.2)]">
-                {/* macOS window title bar */}
-                <div className="flex h-10 items-center gap-2 border-b border-black/5 bg-white px-4">
-                  <span className="size-3 rounded-full bg-[#FF5F57] ring-1 ring-black/5" aria-hidden />
-                  <span className="size-3 rounded-full bg-[#FFBD2E] ring-1 ring-black/5" aria-hidden />
-                  <span className="size-3 rounded-full bg-[#28C840] ring-1 ring-black/5" aria-hidden />
-                  <span className="ml-auto truncate pl-4 text-xs font-medium text-foreground/40">
-                    {p.title}
-                  </span>
-                </div>
-
+              <article className="group relative overflow-hidden rounded-lg border border-foreground/15 bg-card shadow-[0_18px_60px_rgb(15_23_42/0.1)] transition-[border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/45 hover:shadow-[0_24px_72px_rgb(15_23_42/0.14)]">
                 <div className="relative isolate aspect-video w-full overflow-hidden">
                   <img
                     src={p.image}
