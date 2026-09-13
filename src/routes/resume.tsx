@@ -31,7 +31,7 @@ export const Route = createFileRoute("/resume")({
 
 function ResumePage() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div className="relative isolate min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* sky gradient */}
       <div
         aria-hidden
