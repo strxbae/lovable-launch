@@ -4,6 +4,7 @@ import { ArrowLeft, Download } from "lucide-react";
 
 import cloud1 from "@/assets/cloud-1.png";
 import cloud2 from "@/assets/cloud-2.png";
+import resumeBeach from "@/assets/resume-beach-footer.jpg.asset.json";
 import resumeCv from "@/assets/resume-cv.jpg.asset.json";
 
 export const Route = createFileRoute("/resume")({
@@ -30,14 +31,14 @@ export const Route = createFileRoute("/resume")({
 
 function ResumePage() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+    <div className="relative isolate min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* sky gradient */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-20"
         style={{
           background:
-            "linear-gradient(180deg, #F9FDFF 0%, #F9FDFF 19%, #74BAF8 54%, #1B8AE5 75%)",
+            "linear-gradient(180deg, #F9FDFF 0%, #F9FDFF 19%, #74BAF8 74%, #1B8AE5 100%)",
         }}
       />
 
@@ -46,25 +47,25 @@ function ResumePage() {
         src={cloud1}
         alt=""
         aria-hidden
-        className="cloud-in pointer-events-none absolute -left-20 top-[26rem] -z-10 w-[36rem] max-w-[70vw] [--cloud-o:0.85] [--cloud-x:-6rem] [animation-delay:0.2s,2s]"
+        className="cloud-in pointer-events-none absolute -left-24 top-40 -z-10 w-[34rem] max-w-[70vw] [--cloud-o:0.85] [--cloud-x:-6rem] [animation-delay:0.2s,2s]"
       />
       <img
         src={cloud2}
         alt=""
         aria-hidden
-        className="cloud-in pointer-events-none absolute -right-24 top-[22rem] -z-10 w-[40rem] max-w-[80vw] [--cloud-o:0.8] [--cloud-x:7rem] [animation-delay:0.5s,2.3s]"
+        className="cloud-in pointer-events-none absolute -right-28 top-24 -z-10 w-[38rem] max-w-[80vw] [--cloud-o:0.8] [--cloud-x:7rem] [animation-delay:0.5s,2.3s]"
       />
       <img
         src={cloud1}
         alt=""
         aria-hidden
-        className="cloud-in pointer-events-none absolute bottom-24 -left-10 -z-10 w-[30rem] max-w-[65vw] [--cloud-o:0.75] [--cloud-x:-5rem] [animation-delay:0.8s,2.6s]"
+        className="cloud-in pointer-events-none absolute bottom-[34rem] -left-20 z-0 w-[34rem] max-w-[70vw] [--cloud-o:0.76] [--cloud-x:-5rem] [animation-delay:0.8s,2.6s]"
       />
       <img
         src={cloud2}
         alt=""
         aria-hidden
-        className="cloud-in pointer-events-none absolute bottom-10 -right-16 -z-10 w-[32rem] max-w-[70vw] [--cloud-o:0.7] [--cloud-x:6rem] [animation-delay:1s,2.9s]"
+        className="cloud-in pointer-events-none absolute bottom-[30rem] -right-20 z-0 w-[38rem] max-w-[75vw] [--cloud-o:0.7] [--cloud-x:6rem] [animation-delay:1s,2.9s]"
       />
 
       {/* back */}
@@ -126,47 +127,74 @@ function ResumePage() {
         />
       </motion.div>
 
-      {/* footer CTA */}
-      <footer className="mx-auto mt-32 max-w-[1140px] px-6 pb-16 text-primary-foreground">
-        <h2 className="display-xl text-[clamp(2.25rem,7vw,5.5rem)]">
-          lets{" "}
-          <em className="font-script text-[1.1em] font-semibold not-italic">create</em>
-          <br />
-          incredible work together.
-        </h2>
+      {/* beach footer CTA */}
+      <footer className="relative z-10 mt-32 min-h-[760px] overflow-hidden">
+        <img
+          src={resumeBeach.url}
+          alt="A calm tropical beach beneath a clear blue sky"
+          loading="lazy"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 size-full object-cover object-center"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#1B8AE5] via-[#239be7]/75 to-transparent"
+        />
+        <img
+          src={cloud2}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute -top-12 left-[-8rem] w-[38rem] max-w-[74vw] opacity-60"
+        />
+        <img
+          src={cloud1}
+          alt=""
+          aria-hidden
+          className="pointer-events-none absolute -right-28 top-4 w-[32rem] max-w-[68vw] opacity-50"
+        />
 
-        <div className="mt-16 grid gap-8 border-t border-white/25 pt-8 sm:grid-cols-2">
-          <div>
-            <p className="eyebrow opacity-70">Email</p>
-            <a
-              href="mailto:vadlyramadhan11@gmail.com"
-              className="text-xl font-semibold underline-offset-4 hover:underline"
-            >
-              vadlyramadhan11@gmail.com
-            </a>
-          </div>
-          <div className="sm:text-right">
-            <p className="eyebrow opacity-70">Social</p>
-            <div className="mt-2 flex gap-4 sm:justify-end">
-              <a
-                href="https://www.linkedin.com/in/fadli-ramadhan11/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold underline-offset-4 transition hover:underline"
-              >
-                LinkedIn
-              </a>
+        <div className="relative mx-auto flex min-h-[760px] max-w-[1140px] flex-col px-6 pb-12 pt-40">
+          <h2 className="display-xl max-w-4xl text-[clamp(2.25rem,7vw,5.5rem)] text-primary-foreground [text-shadow:0_3px_24px_rgb(7_64_120/0.28)]">
+            lets{" "}
+            <em className="font-script text-[1.1em] font-semibold not-italic">create</em>
+            <br />
+            incredible work together.
+          </h2>
+
+          <div className="mt-auto grid gap-8 border-t border-foreground/20 pt-8 text-foreground sm:grid-cols-2">
+            <div>
+              <p className="eyebrow opacity-70">Email</p>
               <a
                 href="mailto:vadlyramadhan11@gmail.com"
-                className="font-semibold underline-offset-4 transition hover:underline"
+                className="text-xl font-semibold underline-offset-4 hover:underline"
               >
-                Email
+                vadlyramadhan11@gmail.com
               </a>
             </div>
+            <div className="sm:text-right">
+              <p className="eyebrow opacity-70">Social</p>
+              <div className="mt-2 flex gap-4 sm:justify-end">
+                <a
+                  href="https://www.linkedin.com/in/fadli-ramadhan11/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold underline-offset-4 transition hover:underline"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="mailto:vadlyramadhan11@gmail.com"
+                  className="font-semibold underline-offset-4 transition hover:underline"
+                >
+                  Email
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <p className="mt-12 text-sm opacity-70">© 2026 Fadli Ramadhan</p>
+          <p className="mt-12 text-sm text-foreground/70">© 2026 Fadli Ramadhan</p>
+        </div>
       </footer>
     </div>
   );
